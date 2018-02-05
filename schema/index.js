@@ -8,6 +8,7 @@ const {
 
 const Task = require('./types/task');
 const Project = require('./types/project');
+const Label = require('./types/label');
 
 const RootQueryType = new GraphQLObjectType({
     name: 'RootQueryType',
@@ -33,6 +34,17 @@ const RootQueryType = new GraphQLObjectType({
             resolve(obj, args, { todoistApi }) {
                 return todoistApi.getProjectsByApiKey(args.key).
                        then(result => result.projects);
+            }
+        },
+        allLabels: {
+            type: new GraphQLList(Label),
+            description: 'All the labels',
+            args: {
+                key: { type: new GraphQLNonNull(GraphQLString) }
+            },
+            resolve(obj, args, { todoistApi }) {
+                return todoistApi.getLabelsByApiKey(args.key).
+                       then(result => result.labels);
             }
         }
     }),
