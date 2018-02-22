@@ -7,10 +7,12 @@
     "start": "node lib/index"
   },
   "dependencies": {
+    "cors": "^2.8.4",
     "dataloader": "^1.4.0",
     "express": "^4.16.2",
     "express-graphql": "^0.6.11",
     "graphql": "^0.12.3",
+    "lodash": "^4.17.5",
     "node-fetch": "^2.0.0"
   },
   "devDependencies": {

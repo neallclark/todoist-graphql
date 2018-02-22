@@ -28,6 +28,14 @@ const fetchResources = function fetchResources(apiKey, resourceTypes) {
 
 module.exports = () => {
     return {
+        //For DataLoader
+        getTasksByApiKeys(apiKeys) {
+            //return Promise.resolve(fetchResources(apiKeys[0], '"items"'));
+            //return fetchResources(apiKeys[0], '"items"');
+            var obj = fetchResources(apiKeys[0], '"items"');
+            return Promise.resolve(Object.keys(obj).map(function(k) { return obj[k] }));
+        },
+
         getTasksByApiKey(apiKey) {
             return fetchResources(apiKey, '"items"');
         },
@@ -38,6 +46,11 @@ module.exports = () => {
 
         getLabelsByApiKey(apiKey) {
             return fetchResources(apiKey, '"labels"');
+        },
+
+        getOldTasksByApiKey(apiKey) {
+            var items = fetchResources(apiKey, '"items"');
+            return items.filter(function(i){ return i.age > 400 && !i.repeating});
         }
     };
 }

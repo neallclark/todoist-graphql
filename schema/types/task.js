@@ -49,7 +49,17 @@ module.exports = new GraphQLObjectType({
                 resolve: task => task.date_string !== null &&
                                  task.date_string.toLowerCase().
                                  includes('every')
-            }
+            },
+            age: {
+                type: GraphQLInt,
+                description: 'Age of task in days',
+                resolve: task => {
+                    var added = new Date(task.date_added);
+                    var timeDiff = Math.abs(Date.now() - added.getTime());
+                    return Math.ceil(timeDiff / (1000 * 3600 * 24));
+                }
+            },
+
         };
     }
 });
