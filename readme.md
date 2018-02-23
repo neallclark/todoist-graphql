@@ -10,8 +10,9 @@ But mostly the motivation is to play around with a few new (to me) things such a
 
 # Getting Started
 1. clone repo
+2. create a .env file and put the port you want it to run on (e.g. PORT=4000)
 2. node lib/index.js
-3. open http://localhost:3000/graphql
+3. open http://localhost:4000/graphql (or whatever port you set)
 4. enter queries such as -
     
 ```
